@@ -1,5 +1,8 @@
 ## Intersecting Gene and TE coordinates
 
+While I work on this, Nicole and Noelle are asking related questions, but are \
+looking at percent of gene and gene-proximal regions are annotated as TE \
+
 First I took the most recent TE annotation and removed TEs < 100bp
 ```
 B73TEs_subset100.bed
