@@ -69,7 +69,7 @@ write.table(B73_Genes, file="B73_Genes.bed", quote=FALSE, sep='\t',
 
 Using bedtools to get overlaps of TEs and Genes
 Here are the commands I used to get overlaps \
-### Note that, as written, this returns TEs that overlap Introns+outside the gene as Intron Overlaps.... \
+### Note that, as written, this returns TEs that overlap Introns+outside the gene as Intron Overlaps.... 
 ### I need to fix this.
 
 ```
@@ -79,3 +79,19 @@ Here are the commands I used to get overlaps \
   814  bedtools intersect -a B73TEs_Subset100.bed -b B73_Genes.bed -wo > Intersect_TE100Subset_Genes_Anypercent.txt
 ```
 
+### Getting rid of overlapping features \
+I created a MINIMAL version of this to use instead.
+```
+egrep -v "ID=long_terminal_repeat|ID=lTSD|ID=rTSD|ID=lLTR|ID=rLTR|ID=repeat_region|knob|centromeric_repeat|scaf_|low_complexity|subtelomere|rDNA_intergenic_spacer_element" Zm-B73-REFERENCE-NAM-5.0.TE.gff3 > B73_MINIMAL_TEs.gff3
+
+#this was fed into R to generate a 100bp+ bed file
+B73TEs_MINIMAL_Subset100.bed
+```
+
+Repeat bedtools intersect using this minimal TE list
+```
+  bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_Genes.bed -wo -f 1.0 > Intersect_TE100Subset_Genes_100percent.txt
+  bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_introns.bed -wo -f 1.0 > Intersect_TE100Subset_Introns_100percent.txt
+  bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_UTRs.bed -wo -f 1.0 > Intersect_TE100Subset_UTRs_100percent.txt
+  bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_Genes.bed -wo > Intersect_TE100Subset_Genes_Anypercent.txt
+```
