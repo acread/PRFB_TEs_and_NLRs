@@ -95,3 +95,25 @@ Repeat bedtools intersect using this minimal TE list
   bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_UTRs.bed -wo -f 1.0 > Intersect_TE100Subset_UTRs_100percent.txt
   bedtools intersect -a B73TEs_MINIMAL_Subset100.bed -b B73_Genes.bed -wo > Intersect_TE100Subset_Genes_Anypercent.txt
 ```
+
+This method seems to have worked
+I've pulled everything together into this file:  0910_100bpTEs_OverlapGenomicFeatures
+
+Summary below:
+
+| 	|	N	|	NLRs (n=144)            |
+|-----------|-----------------------|-----------------------------------| 
+| N gene and TE annotation overlap (any %)	|	91664	|	
+|     Unique Tes	|	89897	|	            |
+|     Unique Genes	|	22260	|	96          |
+| N gene and TE annotation 100% within Gene	|	79204	|	
+|     Unique Tes	|	78772	|	            |
+|     Unique Genes	|	16733	|	74          |
+| N gene and TE annotation 100% within INTRON	|	72154	|	
+|     Unique Tes	|	71906	|	            |
+|     Unique Genes	|	14410	|	63          |
+| N gene and TE annotation 100% within UTR	|	2674	|	
+|     Unique Tes	|	2659	|	            | 
+| Unique Genes	|	2202	|	            | 
+| Unique UTR	|	2229	|	16          |
+
