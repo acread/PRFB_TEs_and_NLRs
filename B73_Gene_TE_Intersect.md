@@ -117,3 +117,54 @@ Summary below:
 | Unique Genes	|	2202	|	            | 
 | Unique UTR	|	2229	|	16          |
 
+
+## People were surprised by how high these numbers are -- suggest using only the STRUCTURAL TEs
+
+````
+grep "Method=structural" B73TEs_MINIMAL_Subset100.bed > B73TEs_MINIMAL_Structural_Subset100.bed 
+
+bedtools intersect -a B73TEs_MINIMAL_Structural_Subset100.bed -b B73_Genes.bed -wo -f 1.0 > Intersect_TE100Struct_Genes_100percent.txt
+bedtools intersect -a B73TEs_MINIMAL_Structural_Subset100.bed -b B73_introns.bed -wo -f 1.0 > Intersect_TE100Struct_Introns_100percent.txt
+bedtools intersect -a B73TEs_MINIMAL_Structural_Subset100.bed -b B73_UTRs.bed -wo -f 1.0 > Intersect_TE100Struct_UTRs_100percent.txt
+bedtools intersect -a B73TEs_MINIMAL_Structural_Subset100.bed -b B73_Genes.bed -wo > Intersect_TE100Struct_Genes_Anypercent.txt
+````
+
+Output brought into R to figure out how many unique elements
+````R
+#Any percent overlap with gene
+TE_GeneAnypercent_Overlap=read_tsv("Intersect_TE100Struct_Genes_Anypercent.txt", col_names = FALSE)
+Unique_Genes=unique(TE_GeneAnypercent_Overlap$X8)
+Unique_TEs=unique(TE_GeneAnypercent_Overlap$X4)
+
+#TEs completely within a gene
+TE_Gene_Overlap=read_tsv("Intersect_TE100Struct_Genes_100percent.txt", col_names = FALSE)
+Unique_Genes=unique(TE_Gene_Overlap$X8)
+Unique_TEs=unique(TE_Gene_Overlap$X4)
+
+#TEs completely within introns
+TE_Intron_Overlap=read_tsv("Intersect_TE100Struct_Introns_100percent.txt", col_names = FALSE)
+Unique_Genes=unique(TE_Intron_Overlap$X8)
+Unique_TEs=unique(TE_Intron_Overlap$X4)
+
+#TEs completely within UTRs (5' and/or 3')
+TE_UTR_Overlap=read_tsv("Intersect_TE100Struct_UTRs_100percent.txt", col_names = FALSE)
+Unique_Genes=unique(TE_UTR_Overlap$X8)
+Unique_TEs=unique(TE_UTR_Overlap$X4)
+````
+Summary:
+
+| 	|	N	|
+|-----------|-----------------------|
+| gene and TE annotation overlap (any %)	|	
+|     Unique Tes	|	8379	|
+|     Unique Genes	|	7619	|
+| gene and TE annotation 100% within Gene	|	
+|     Unique Tes	|	5183	|
+|     Unique Genes	|	3832	|
+| gene and TE annotation 100% within INTRON	|	
+|     Unique Tes	|	4746	|
+|     Unique Genes	|	3498	|
+| gene and TE annotation 100% within UTR	|	
+|     Unique Tes	|	117	| 
+|     Unique Genes	|	117         |
+
