@@ -168,3 +168,22 @@ Summary:
 |     Unique Tes	|	117	| 
 |     Unique Genes	|	117         |
 
+If we want to summarize by TE type we can use a version of this R code
+````R
+####To get a summary of TE types:
+x=TE_Gene_Overlap$X4
+x=as.data.frame(x)
+x=gsub('.*Classification=','',x$x)
+x=as.data.frame(x)
+x=gsub(';.*','',x$x)
+TE_Gene_100=table(x)
+````
+
+````
+DNA/DTA      DNA/DTC      DNA/DTH      DNA/DTM      DNA/DTT 
+         481           35           24           48           78 
+DNA/Helitron    LTR/Copia    LTR/Gypsy  LTR/unknown     MITE/DTA 
+         330          703          574          254          591 
+    MITE/DTC     MITE/DTH     MITE/DTM     MITE/DTT 
+           7          825          125         1135 
+````
