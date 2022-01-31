@@ -31,7 +31,7 @@ x=makeTxDbFromGFF("Zm-B73-REFERENCE-NAM-5.0_Zm00001eb.1.primary.gff3")
 all.introns = intronicParts(x)
 
 y=as.data.frame(all.introns)
-y=y %>% select(1,2,3,8)
+y=y %>% dplyr::select(1,2,3,8)
 
 write.table(y, file='B73_introns.bed', quote=FALSE, sep='\t', col.names = FALSE, 
             row.names = FALSE)
