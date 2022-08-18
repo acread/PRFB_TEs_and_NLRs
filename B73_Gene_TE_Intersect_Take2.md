@@ -28,3 +28,13 @@ Lots of code....
   <img src="https://user-images.githubusercontent.com/43852873/184731759-578c3e9c-f3d4-448f-a730-2b7cb427bfcd.png?raw=true" alt="image"/>
 </p>
 
+
+## Reorganizing the data
+This is interesting but it's challenging because the datasets are such different sizes - Manisha suggested pulling 2 more subsets of genes \
+and seeing what their patterns look like
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/43852873/185230446-e4eaadb2-e142-4369-9f0a-9cd997697f2c.png?raw=true" alt="image"/>
+</p>
+
+
