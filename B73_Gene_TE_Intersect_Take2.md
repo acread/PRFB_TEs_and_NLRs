@@ -14,7 +14,17 @@
   <img src="https://user-images.githubusercontent.com/43852873/184729988-cfd0d635-2884-4654-b404-335fb267a11d.png?raw=true" alt="image"/>
 </p>
 
-Lots of code....
+### Modifications to Strategy:
+1. I used Manisha's curated structural and homology TE list instead of Structural only (though I did a grouped and seperate analysis)
+2. Canonical transcripts were still used to generate the Intron files
+3. I did Intron specific overlaps, however for the specific below analysis I'm just saying "does a TE overlap a canonical gene"
+4. I created files with 500bp blocks up and downstream of each gene - 4 blocks each, so looking at 2kb up and down \
+Note that I did not correct for any genes that are within 4kb of eachother, so there may be some genomic regions that get counted more than once.
+
+To generate the below figure I calculated the number of each class of TE 
+
+![image](https://user-images.githubusercontent.com/43852873/194428494-63168df5-4f10-4b75-9ffb-f08bdf72cde3.png)
+
 
 ### Here is the B73 data
 
