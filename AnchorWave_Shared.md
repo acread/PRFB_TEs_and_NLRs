@@ -8,10 +8,11 @@ Next I will create a coordinate list of 2kb up and 2kb down from each NLR and in
 share TEs.  
 I will first use BEDtools merge to merge overlapping intervals (these are in effect, NLR clusters), followed by BEDtools intersect with TEs. 
 
-<DATA>
+
+<details><summary>Open to view Data</summary>
   </br>
 
-| V1    | V2        | V3        | V4              | V5   | NLR | KKNewList   | Distance between NLRs | Cluster(3kb) | 2kbflank1 | 2kbflank2 |
+  | V1    | V2        | V3        | V4              | V5   | NLR | KKNewList   | Distance between NLRs | Cluster(3kb) | 2kbflank1 | 2kbflank2 |
 |-------|-----------|-----------|-----------------|------|-----|-------------|-----------------------|--------------|-----------|-----------|
 | chr1  | 35063891  | 35068791  | Zm00001eb010990 | Gene | NLR | KK_new_list | 17783294              | NO           | 35061891  | 35070791  |
 | chr1  | 52852085  | 52855107  | Zm00001eb015450 | Gene | NLR | KK_new_list | 46029646              | NO           | 52850085  | 52857107  |
