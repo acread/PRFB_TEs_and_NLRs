@@ -248,4 +248,10 @@ I'm 'grepping' out all the NLR rows from each comparison (I'm 100% sure there's 
 ````
 
 After this I'm going into VIM and adding a column to the end with the cultivar identifier so I can cat them into a single file
+`````
+#here's an example of the VIM command
+#:%s/$/ B97/g
 
+#and here's how I concatenated everything
+cat *.txt > B73_NLRs_All_classification.txt
+`````
