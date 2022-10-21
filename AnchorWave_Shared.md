@@ -193,3 +193,59 @@ I will first use BEDtools merge to merge overlapping intervals (these are in eff
 
 
 </details>
+
+### Manisha has classified each gene into one of three categories based on the AnchorWave alignment - 1. Shared (95% of gene falls in shared block)2. Polymorphic (95% of gene falls in polymorphic block) or 3. Ambiguous (doesn't fit the other two categories)
+
+Each B73 vs NAM comparison looks like this: \
+col5 is the percent of the gene in shared block(s) \
+col6 is percent of gene in a B73 insertion seq \
+col7 will always be zero in the B73 vs files \
+col8 is percent of gene in unalignable block \
+col9 is percent missing data \
+col10 is a list of the Anchorwave blocks that correspond to the region\
+col11 is the classification of the gene
+
+````
+head B73_B97_gene_classification_by_full.tsv 
+id_name chr start end alignable_region structural_insertion_inB73 structural_insertion_inB97 unalignable Missing_Data AW_Blocks classification
+Zm00001eb000010_T001 chr1 34617 40204 1 0 0 0 0 chr1_AW_BlockID_8 shared
+Zm00001eb000020_T001 chr1 41214 46762 1 0 0 0 0 chr1_AW_BlockID_8 shared
+Zm00001eb000050_T001 chr1 108554 114382 0.605181880576527 0.394303363074811 0 0 0 chr1_AW_BlockID_8,chr1_AW_BlockID_9,chr1_AW_BlockID_10,chr1_AW_BlockID_11 ambiguous
+Zm00001eb000060_T001 chr1 188559 189581 1 0 0 0 0 chr1_AW_BlockID_16 shared
+Zm00001eb000070_T001 chr1 190192 198832 1 0 0 0 0 chr1_AW_BlockID_16 shared
+Zm00001eb000080_T001 chr1 200262 203393 1 0 0 0 0 chr1_AW_BlockID_16 shared
+Zm00001eb000100_T001 chr1 206619 209723 0.999355670103093 0 0 0 0 chr1_AW_BlockID_16,chr1_AW_BlockID_17,chr1_AW_BlockID_18 shared
+Zm00001eb000110_T001 chr1 246422 247242 1 0 0 0 0 chr1_AW_BlockID_22 shared
+Zm00001eb000120_T001 chr1 315219 315846 1 0 0 0 0 chr1_AW_BlockID_22 shared
+````
+
+I'm 'grepping' out all the NLR rows from each comparison (I'm 100% sure there's a better way to do this)
+````
+(base) grep -f B73_GeneIDs.txt B73_CML247_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML247_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_CML277_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML277_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_CML322_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML322_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_CML333_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML333_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_CML52_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML52_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_CML69_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_CML69_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_HP301_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_HP301_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_IL14H_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_IL14H_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Il14H_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Il14H_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Ki11_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Ki11_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Ki3_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Ki3_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Ky21_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Ky21_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_M162W_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_M162W_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_M37W_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_M37W_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Mo18W_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Mo18W_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Ms71_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Ms71_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_NC350_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_NC350_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_NC358_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_NC358_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Oh43_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Oh43_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_O7B_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Oh7B_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Oh7B_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Oh7B_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_P39_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_P39_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Tx303_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Tx303_classification.txt
+(base) grep -f B73_GeneIDs.txt B73_Tzi8_gene_classification_by_full.tsv > NLR_classification/B73_NLRs_Tzi8_classification.txt
+````
+
+After this I'm going into VIM and adding a column to the end with the cultivar identifier so I can cat them into a single file
+
