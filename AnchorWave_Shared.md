@@ -255,3 +255,35 @@ After this I'm going into VIM and adding a column to the end with the cultivar i
 #and here's how I concatenated everything
 cat *.txt > B73_NLRs_All_classification.txt
 `````
+
+Here's a table showing the counts of shared, polymorphic, and ambiguous NLR genes by cultivar (B73 vs NAM)
+
+|        | shared | ambiguous | polymorphic |
+| ------ | ------ | --------- | ----------- |
+| NC358  | 112    | 43        | 21          |
+| P39    | 111    | 41        | 24          |
+| Ki3    | 111    | 38        | 27          |
+| Il14H  | 110    | 42        | 24          |
+| Ms71   | 110    | 38        | 28          |
+| Oh43   | 109    | 40        | 27          |
+| Mo18W  | 108    | 47        | 21          |
+| B97    | 106    | 38        | 32          |
+| M162W  | 105    | 37        | 34          |
+| Tx303  | 105    | 31        | 40          |
+| NC350  | 104    | 31        | 41          |
+| CML103 | 103    | 41        | 32          |
+| M37W   | 103    | 41        | 32          |
+| Ky21   | 103    | 40        | 33          |
+| CML228 | 103    | 39        | 34          |
+| CML52  | 100    | 59        | 17          |
+| Ki11   | 100    | 43        | 33          |
+| Oh7B   | 99     | 47        | 30          |
+| Tzi8   | 99     | 39        | 38          |
+| CML247 | 97     | 44        | 35          |
+| CML69  | 96     | 54        | 26          |
+| CML322 | 96     | 51        | 29          |
+| HP301  | 95     | 40        | 41          |
+| CML277 | 94     | 55        | 27          |
+| CML333 | 93     | 41        | 42          |
+
+
