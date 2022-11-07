@@ -256,34 +256,64 @@ After this I'm going into VIM and adding a column to the end with the cultivar i
 cat *.txt > B73_NLRs_All_classification.txt
 `````
 
-Here's a table showing the counts of shared, polymorphic, and ambiguous NLR genes by cultivar (B73 vs NAM)
+Here's a table showing the counts of shared, polymorphic, and ambiguous NLR genes by cultivar (B73 vs NAM) when looking at \
+Exons Only -- Note that I am filtering the polymorphic NLRs from this group because the they're too different to do SV analysis
 
-|        | shared | ambiguous | polymorphic |
-| ------ | ------ | --------- | ----------- |
-| NC358  | 112    | 43        | 21          |
-| P39    | 111    | 41        | 24          |
-| Ki3    | 111    | 38        | 27          |
-| Il14H  | 110    | 42        | 24          |
-| Ms71   | 110    | 38        | 28          |
-| Oh43   | 109    | 40        | 27          |
-| Mo18W  | 108    | 47        | 21          |
-| B97    | 106    | 38        | 32          |
-| M162W  | 105    | 37        | 34          |
-| Tx303  | 105    | 31        | 40          |
-| NC350  | 104    | 31        | 41          |
-| CML103 | 103    | 41        | 32          |
-| M37W   | 103    | 41        | 32          |
-| Ky21   | 103    | 40        | 33          |
-| CML228 | 103    | 39        | 34          |
-| CML52  | 100    | 59        | 17          |
-| Ki11   | 100    | 43        | 33          |
-| Oh7B   | 99     | 47        | 30          |
-| Tzi8   | 99     | 39        | 38          |
-| CML247 | 97     | 44        | 35          |
-| CML69  | 96     | 54        | 26          |
-| CML322 | 96     | 51        | 29          |
-| HP301  | 95     | 40        | 41          |
-| CML277 | 94     | 55        | 27          |
-| CML333 | 93     | 41        | 42          |
+|        | ambiguous | polymorphic | shared |
+| ------ | --------- | ----------- | ------ |
+| B97    | 19        | 32          | 125    |
+| CML103 | 26        | 32          | 118    |
+| CML228 | 23        | 33          | 120    |
+| CML247 | 36        | 32          | 108    |
+| CML277 | 35        | 27          | 114    |
+| CML322 | 38        | 29          | 109    |
+| CML333 | 16        | 43          | 117    |
+| CML52  | 38        | 17          | 121    |
+| CML69  | 34        | 25          | 117    |
+| HP301  | 23        | 42          | 111    |
+| Il14H  | 35        | 24          | 117    |
+| Ki11   | 28        | 32          | 116    |
+| Ki3    | 34        | 27          | 115    |
+| Ky21   | 30        | 27          | 119    |
+| M162W  | 27        | 33          | 116    |
+| M37W   | 28        | 32          | 116    |
+| Mo18W  | 30        | 22          | 124    |
+| Ms71   | 28        | 28          | 120    |
+| NC350  | 16        | 40          | 120    |
+| NC358  | 34        | 21          | 121    |
+| Oh43   | 25        | 27          | 124    |
+| P39    | 33        | 24          | 119    |
+| Tx303  | 21        | 41          | 114    |
+| Tzi8   | 27        | 38          | 111    |
+
+
+And here's a comparison when you expand beyond exons and include the entire gene sequence pluse 1kb up and downstream
+
+|        | ambiguous | polymorphic | shared |
+| ------ | --------- | ----------- | ------ |
+| B97    | 76        | 27          | 73     |
+| CML103 | 76        | 30          | 70     |
+| CML228 | 79        | 29          | 68     |
+| CML247 | 96        | 27          | 53     |
+| CML277 | 94        | 20          | 62     |
+| CML322 | 96        | 24          | 56     |
+| CML333 | 85        | 36          | 55     |
+| CML52  | 97        | 13          | 66     |
+| CML69  | 93        | 19          | 64     |
+| HP301  | 79        | 37          | 60     |
+| Il14H  | 87        | 23          | 66     |
+| Ki11   | 82        | 30          | 64     |
+| Ki3    | 84        | 24          | 68     |
+| Ky21   | 78        | 23          | 75     |
+| M162W  | 77        | 30          | 69     |
+| M37W   | 78        | 30          | 68     |
+| Mo18W  | 91        | 16          | 69     |
+| Ms71   | 76        | 22          | 78     |
+| NC350  | 81        | 33          | 62     |
+| NC358  | 87        | 20          | 69     |
+| Oh43   | 74        | 24          | 78     |
+| P39    | 81        | 21          | 74     |
+| Tx303  | 71        | 35          | 70     |
+| Tzi8   | 84        | 34          | 58     |
 
 
