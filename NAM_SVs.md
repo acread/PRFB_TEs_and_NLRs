@@ -7,6 +7,7 @@ For each gene in B73, does it have an SV in or near (+/- 1kb) the gene?, if yes,
 B97, and this SV overlaps the promoter, and only the promoter. Some additional filters to get rid of genes that are too similar (no SVs) \
 these were kept as a control set, and filter to get rid of genes that are too different based on exon-only comparison, and kick out genes \
 that overlap 'unalignable regions'
+***Note: Go back and create a category of multi-SV genes***
 
 This leaves us with: \
        739 B73 genes with deletions in promoters relative to B97 \
@@ -16,7 +17,8 @@ This leaves us with: \
 
 The first thing I've done is look at the distribution of expression of these genes. \
 I am pulling B73 expression from an existing TPM table (B73_full-tpm.tsv), only using one set of leaf tissues for initial analysis \
-"B73_V11_middle".  For B97, ZM helped me map the B97 data back to B73, and again I'm pulling a leaf treatment only "leaf" - 4 reps \
+"B73_V11_middle".  ***Question: were these re-run for the NAM paper? it would be nice to have similar datasets*** \
+For B97, ZM helped me map the B97 data back to B73, and again I'm pulling a leaf treatment only "leaf" - 4 reps \
 I calculated the mean TPM for each gene and visualized with a violin plot -- note that the distribution of TPMs includes some very \
 large values that I am not including here.  I also have not calculated a ratio of B73/B97 yet (though this is easy and on my list) \
 
