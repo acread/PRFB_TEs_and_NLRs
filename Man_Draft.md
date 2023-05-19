@@ -287,6 +287,14 @@ rm(list=setdiff(ls(), "ALL_AW_blocks"))
 `````
 </details>
 
+	
+### Expression of Promoter SV genes across tissues
+Identify Promoter SVs that overlap TEs - Look at gene expression within a tissue, how many are up? down?
+	
+### Expression Plasticity Across Tissues
+For each gene across tissues, calculate the mean and variance \
+Group genes by presence/absence of TE-SV and T-test to compare \
+	
 
 
 
