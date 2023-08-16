@@ -648,7 +648,11 @@ xline(1000,lty=2,col='black')
 </details>
 
 Here are a few examples of metaplots -- it does look like there are different methylation signatures for the genes that \
-are generally upregulated after heat stress, but it is unclear whether this is biologically relevant.
+are generally upregulated after heat stress, but it is unclear whether this is biologically relevant. \
+### counts for each category: 
+### All expressed - 25,069
+### Robust DE - 483
+### Core DE - 152
 
 ![image](https://github.com/acread/PRFB_TEs_and_NLRs/assets/43852873/65c796fb-3be6-42b1-9c94-a353c86a0ca3)
 
