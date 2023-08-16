@@ -481,5 +481,180 @@ completely track, but these may drop way down when the other two replicates are 
 
 ![image](https://github.com/acread/PRFB_TEs_and_NLRs/assets/43852873/bff25d33-18bb-4264-9c85-0e5d3bda5a45)
 
+### Metaplots of merged data from the 3 reps
+
+I ran the maize data through Pete's pipeline to generate tile-based mC levels in each context \
+Zach provided a categorization file for each gene based on whether it is DE in: no datasets (Exp not DE), \
+DE in 1, DE in 5 or more (Robust), or DE in all 6 (Core) -- I'm doing various splits based on these data \
+to see if there are observable differences in methylation patterns at or near genes.
+
+<details>
+  <summary>R code</summary>
+        
+`````R
+library(ggplot2)
+library(data.table)
+library(tidyverse)
+library(janitor)
+library(fields)
+
+setwd("/Users/read0094/Desktop/Maize/ForZach/")
+
+data_table=fread("B73_merge_data.sub1.txt")
+
+
+#to subset to Zach's subset lists
+Intersect_Zach=fread("Intersections.Up.Zm01.02.03.04.05.06.B73.tsv")
+Robust_DEGs=subset(Intersect_Zach, intersectionDegree>=5)
+Robust_DEGs_subset=Robust_DEGs %>% dplyr::select(1)
+Robust_DEGs_subset=dplyr::rename(Robust_DEGs_subset, Gene=gid)
+Robust_DEGs_subset$status="Robust"
+Robust_DEGs_subset_more=dplyr::left_join(Robust_DEGs_subset, data_table)
+
+Core_DEGs=subset(Intersect_Zach, intersectionDegree==6)
+Core_DEGs_subset=Core_DEGs %>% dplyr::select(1)
+Core_DEGs_subset=dplyr::rename(Core_DEGs_subset, Gene=gid)
+Core_DEGs_subset$status="Core"
+Core_DEGs_subset_more=dplyr::left_join(Core_DEGs_subset, data_table)
+
+
+DE_once=subset(Intersect_Zach, intersectionDegree==1)
+DE_once_subset=DE_once %>% dplyr::select(1)
+DE_once_subset=dplyr::rename(DE_once_subset, Gene=gid)
+DE_once_subset$status="DE_once"
+DE_once_subset_more=dplyr::left_join(DE_once_subset, data_table)
+
+##
+#stats.test1.cg=stats.bin(Robust_DEGs_subset_more$distance,Robust_DEGs_subset_more$cg,N=42)
+stats.Robust.cg=stats.bin(Robust_DEGs_subset_more$relative_distance,Robust_DEGs_subset_more$cg,N=42)
+#stats.test1.chg=stats.bin(Robust_DEGs_subset_more$distance,Robust_DEGs_subset_more$chg,N=42)
+stats.Robust.chg=stats.bin(Robust_DEGs_subset_more$relative_distance,Robust_DEGs_subset_more$chg,N=42)
+#stats.test1.chh=stats.bin(Robust_DEGs_subset_more$distance,Robust_DEGs_subset_more$chh,N=42)
+stats.Robust.chh=stats.bin(Robust_DEGs_subset_more$relative_distance,Robust_DEGs_subset_more$chh,N=42)
+
+p.Robust.cg=cbind(matrix(stats.Robust.cg$centers,ncol=1),stats.Robust.cg$stats["mean",])
+p.Robust.chg=cbind(matrix(stats.Robust.cg$centers,ncol=1),stats.Robust.chg$stats["mean",])
+p.Robust.chh=cbind(matrix(stats.Robust.cg$centers,ncol=1),stats.Robust.chh$stats["mean",])
+
+##
+plot(x=NULL, y=NULL,xlim=c(-1100,2100),ylim=c(0,1),xlab="",ylab='read count',main='Robust')
+lines(p.Robust.cg,col=1,lwd=1)
+lines(p.Robust.chg,col=2,lwd=1)
+lines(p.Robust.chh,col=3,lwd=1)
+#lines(p.7.cg,col=7,lwd=1)
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+
+###
+stats.Core.cg=stats.bin(Core_DEGs_subset_more$relative_distance,Core_DEGs_subset_more$cg,N=42)
+#stats.test1.chg=stats.bin(Core_DEGs_subset_more$distance,Core_DEGs_subset_more$chg,N=42)
+stats.Core.chg=stats.bin(Core_DEGs_subset_more$relative_distance,Core_DEGs_subset_more$chg,N=42)
+#stats.test1.chh=stats.bin(Core_DEGs_subset_more$distance,Core_DEGs_subset_more$chh,N=42)
+stats.Core.chh=stats.bin(Core_DEGs_subset_more$relative_distance,Core_DEGs_subset_more$chh,N=42)
+
+p.Core.cg=cbind(matrix(stats.Core.cg$centers,ncol=1),stats.Core.cg$stats["mean",])
+p.Core.chg=cbind(matrix(stats.Core.cg$centers,ncol=1),stats.Core.chg$stats["mean",])
+p.Core.chh=cbind(matrix(stats.Core.cg$centers,ncol=1),stats.Core.chh$stats["mean",])
+
+
+###
+#stats.DE_once.cg=stats.bin(DE_once_more$distance,DE_once_more$cg,N=42)
+stats.DE_once.cg=stats.bin(DE_once_subset_more$relative_distance,DE_once_subset_more$cg,N=42)
+#stats.DE_once.chg=stats.bin(DE_once_more$distance,DE_once_more$chg,N=42)
+stats.DE_once.chg=stats.bin(DE_once_subset_more$relative_distance,DE_once_subset_more$chg,N=42)
+#stats.DE_once.chh=stats.bin(DE_once_more$distance,DE_once_more$chh,N=42)
+stats.DE_once.chh=stats.bin(DE_once_subset_more$relative_distance,DE_once_subset_more$chh,N=42)
+
+p.DE_once.cg=cbind(matrix(stats.DE_once.cg$centers,ncol=1),stats.DE_once.cg$stats["mean",])
+p.DE_once.chg=cbind(matrix(stats.DE_once.cg$centers,ncol=1),stats.DE_once.chg$stats["mean",])
+p.DE_once.chh=cbind(matrix(stats.DE_once.cg$centers,ncol=1),stats.DE_once.chh$stats["mean",])
+
+plot(x=NULL, y=NULL,xlim=c(-1100,2100),ylim=c(0,1),xlab="",ylab='read count',main='Robust v DEonce')
+lines(p.Robust.cg,col="darkblue",lwd=1)
+lines(p.DE_once.cg,col="blue",lwd=1)
+lines(p.Robust.chg,col="darkred",lwd=1)
+lines(p.DE_once.chg,col="red",lwd=1)
+lines(p.Robust.chh,col="darkgreen",lwd=1)
+lines(p.DE_once.chh,col="green",lwd=1)
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+
+
+###Bringing in the 'Exp_notDE' and 'All_Exp' lists
+All_Expressed_DEGs=fread("ZmB73.AllExpressedGenes.tsv")
+#All_Expressed_DEGs_subset=All_Expressed_DEGs %>% dplyr::select(1)
+All_Expressed_DEGs=dplyr::rename(All_Expressed_DEGs, Gene=gid)
+All_Expressed_DEGs$status="All_Expressed"
+All_Expressed_DEGs_more=dplyr::left_join(All_Expressed_DEGs, data_table)
+
+stats.All_Expressed.cg=stats.bin(All_Expressed_DEGs_more$relative_distance,All_Expressed_DEGs_more$cg,N=42)
+#stats.test1.chg=stats.bin(All_Expressed_DEGs_subset_more$distance,All_Expressed_DEGs_subset_more$chg,N=42)
+stats.All_Expressed.chg=stats.bin(All_Expressed_DEGs_more$relative_distance,All_Expressed_DEGs_more$chg,N=42)
+#stats.test1.chh=stats.bin(All_Expressed_DEGs_subset_more$distance,All_Expressed_DEGs_subset_more$chh,N=42)
+stats.All_Expressed.chh=stats.bin(All_Expressed_DEGs_more$relative_distance,All_Expressed_DEGs_more$chh,N=42)
+
+p.All_Expressed.cg=cbind(matrix(stats.All_Expressed.cg$centers,ncol=1),stats.All_Expressed.cg$stats["mean",])
+p.All_Expressed.chg=cbind(matrix(stats.All_Expressed.cg$centers,ncol=1),stats.All_Expressed.chg$stats["mean",])
+p.All_Expressed.chh=cbind(matrix(stats.All_Expressed.cg$centers,ncol=1),stats.All_Expressed.chh$stats["mean",])
+
+##
+plot(x=NULL, y=NULL,xlim=c(-1100,2100),ylim=c(0,1),xlab="",ylab='read count',main='All_Expressed')
+lines(p.All_Expressed.cg,col=1,lwd=1)
+lines(p.All_Expressed.chg,col=2,lwd=1)
+lines(p.All_Expressed.chh,col=3,lwd=1)
+#lines(p.7.cg,col=7,lwd=1)
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+
+#CorevALL
+plot(x=NULL, y=NULL,xlim=c(-610,1500),ylim=c(0,0.75),xlab="",ylab='methylation',main='Core v AllExp',xaxt='n')
+lines(p.Core.cg,col="blue",lwd=1)
+lines(p.All_Expressed.cg,col="blue",lwd=1, lty='dashed')
+lines(p.Core.chg,col="red",lwd=1)
+lines(p.All_Expressed.chg,col="red",lwd=1, lty='dashed')
+lines(p.Core.chh,col="darkgreen",lwd=1)
+lines(p.All_Expressed.chh,col="darkgreen",lwd=1, lty='dashed')
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+legend("bottomright", legend=c("Core CG", "All CG","Core CHG", "All CHG","Core CHH", "All CHH"),
+       col=c("blue", "blue","red", "red","darkgreen","darkgreen"), lty=1:2, cex=0.5,box.lty=0)
+
+plot(x=NULL, y=NULL,xlim=c(-1100,2100),ylim=c(0,0.1),xlab="",ylab='read count',main='Core v AllExp CHH')
+lines(p.Core.chh,col="darkgreen",lwd=1)
+lines(p.All_Expressed.chh,col="green",lwd=1, lty='dashed')
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+
+#RobustvAll
+plot(x=NULL, y=NULL,xlim=c(-610,1500),ylim=c(0,0.75),xlab="",ylab='methylation',main='Robust v AllExp', xaxt='n')
+lines(p.Robust.cg,col="blue",lwd=1)
+lines(p.All_Expressed.cg,col="blue",lwd=1, lty='dashed')
+lines(p.Robust.chg,col="red",lwd=1)
+lines(p.All_Expressed.chg,col="red",lwd=1, lty='dashed')
+lines(p.Robust.chh,col="darkgreen",lwd=1)
+lines(p.All_Expressed.chh,col="darkgreen",lwd=1, lty='dashed')
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+legend("bottomright", legend=c("Robust CG", "All CG","Robust CHG", "All CHG","Robust CHH", "All CHH"),
+       col=c("blue", "blue","red", "red","darkgreen","darkgreen"), lty=1:2, cex=0.5,box.lty=0)
+
+
+plot(x=NULL, y=NULL,xlim=c(-1100,2100),ylim=c(0,0.1),xlab="",ylab='read count',main='Robust v AllExp CHH')
+lines(p.Robust.chh,col="darkgreen",lwd=1)
+lines(p.All_Expressed.chh,col="green",lwd=1, lty='dashed')
+xline(0,lty=2,col='black')
+xline(1000,lty=2,col='black')
+`````
+</details>
+
+Here are a few examples of metaplots -- it does look like there are different methylation signatures for the genes that \
+are generally upregulated after heat stress, but it is unclear whether this is biologically relevant.
+
+![image](https://github.com/acread/PRFB_TEs_and_NLRs/assets/43852873/65c796fb-3be6-42b1-9c94-a353c86a0ca3)
+
+![image](https://github.com/acread/PRFB_TEs_and_NLRs/assets/43852873/5d10cd19-8ce0-4c39-b19f-7be40ab0565f)
+
+
+
 
 
