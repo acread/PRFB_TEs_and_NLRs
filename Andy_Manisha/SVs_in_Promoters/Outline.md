@@ -1,6 +1,6 @@
 ## Is structural variation associated with tissue specific expression?
 
-Gene Expression:  RNAseq data generated as part of the NAM genome sequencing project was used.  This includes RNAseq data for 10 tissue for each \
+Gene Expression:  RNAseq data generated as part of the NAM genome sequencing project was used.  This includes RNAseq data for 10 tissue for each 
 of the 25 NAM lines and B73. \
 All RNAseq data was aligned to B73v5.
 
