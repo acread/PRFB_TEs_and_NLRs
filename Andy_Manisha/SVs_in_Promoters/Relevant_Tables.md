@@ -1,4 +1,6 @@
-### Some relevant tables/files
+## Some relevant tables/files
+
+### I'm dropping these into: /home/read0094/read0094/For_Manisha
 
 1. NAM_TE_Exp_SV_Tablev2.txt\
 Rows = Genes\
