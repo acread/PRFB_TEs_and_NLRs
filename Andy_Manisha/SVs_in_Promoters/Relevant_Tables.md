@@ -50,3 +50,16 @@ Zm00001eb000150_CML247	1	Zm00001eb000150	chr1	327086	328086	chr1_AW_BlockID_37	c
 Zm00001eb000150_CML277	1	Zm00001eb000150	chr1	327086	328086	chr1_AW_BlockID_29	chr1	322874	328037	Category_5
 `````
 
+5. NAM_SVs_details.txt \
+Rows = geneID \
+Columns = PIED feature, feature chromosome, feature start, feature end, feature length, AW block ID, AW block chr, AW block start, AW block end, MAM category, overlap length, Description (B73 INS/DEL relative to which NAM), gene_feature concatenated \
+**Notes: This version of the table includes the 1kb downstream region -- There is some feature overlap here due to annotations that are close/overlapping**
+
+`````
+geneID	PIE	gene_PIE_chr	gene_PIE_start	gene_PIE_end	gene_PIE_len	AW_blockID	AW_chr	AW_start	AW_end	MAM_category	overlap_len	Description	gene_feature
+Zm00001eb000050	intron	chr1	109952	113761	3810	chr1_AW_BlockID_9	chr1	110302	111609	Category_5	1307	B73_Ins_Rel_B97	Zm00001eb000050_intron
+Zm00001eb000050	intron	chr1	109952	113761	3810	chr1_AW_BlockID_11	chr1	113391	118693	Category_4	370	B73_Ins_Rel_B97	Zm00001eb000050_intron
+Zm00001eb000050	exon	chr1	113762	114382	620	chr1_AW_BlockID_11	chr1	113391	118693	Category_4	620	B73_Ins_Rel_B97	Zm00001eb000050_exon
+Zm00001eb000050	Promoter	chr1	114383	115383	1000	chr1_AW_BlockID_11	chr1	113391	118693	Category_4	1000	B73_Ins_Rel_B97	Zm00001eb000050_Promoter
+Zm00001eb000140	Downstream	chr1	324306	325306	1000	chr1_AW_BlockID_23	chr1	322874	328037	Category_5	1000	B73_Ins_Rel_B97	Zm00001eb000140_Downstream
+`````
