@@ -122,6 +122,7 @@ write.csv(norm, "/scratch.global/read0094/NAM_RNAseq/DESEQnorm_NAM_RNAseq_counts
 
 
 ### Identifying genic Structural Variants
+### Note that the categorization strategy changed - new strat includes 2k upstream of translational start as "promoter" - the code and description below do NOT reflect this
 Structural variants between B73 and each of the 25 additional NAM founder lines were identified via Anchorwave genome alignment in Munasinghe 2023 \
 These SVs are defined as 50bp or greater in/dels that map to a single bp in one cultivar
 I'm categorizing 'genic' SVs as those that either overlap the canonical gene model, or overlap the 1kb upstream of the TSS \
